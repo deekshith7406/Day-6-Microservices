@@ -1,41 +1,4 @@
-# Day 5–6 — Service-to-Service Communication, Discovery & Gateway
 
-## Why this is a separate project from `one-enterprise-platform`
-
-Days 2–4 all said "continue using your existing services." Day 5 doesn't —
-it walks through building the User Service → Order Service call **from
-scratch**, using a different HTTP client (Spring's newer `RestClient`
-instead of `RestTemplate`), plain endpoint paths (`/users/{id}`, not
-`/api/users/{id}`), and record-based DTOs. That's a deliberate fresh
-teaching exercise, not another increment to the bigger platform — so it
-lives in its own folder rather than being bolted onto Days 1–4's project.
-Day 6 explicitly says to "take the Day 5 Order + User example and upgrade
-it," so it extends this project rather than starting yet another one.
-
-If you're looking for the accumulated platform (gateway, resilience
-patterns, payment service, etc.), that's the separate
-`one-enterprise-platform` project from Days 1–4. Note that project's
-gateway (Day 3) routes to fixed `http://localhost:808x` addresses; this
-project's gateway (Day 6) routes to Eureka-registered service *names*
-instead — that's the actual difference Day 6 is teaching.
-
-```
-day5-service-communication/
-├── discovery-server/  → Eureka registry, port 8761
-├── api-gateway/         → single entry point, routes by service name, port 8080
-├── user-service/          → provider API, registered as USER-SERVICE, port 8081
-└── order-service/           → consumer, registered as ORDER-SERVICE, port 8082
-```
-
-## Prerequisites
-
-- Java 17+
-- Maven 3.8+
-
-## Running it
-
-**Start order matters** — the registry first, then the services that
-register with it, then the gateway that depends on discovering them.
 
 **Terminal 1 — Discovery Server (port 8761)**
 ```bash
