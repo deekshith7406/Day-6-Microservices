@@ -23,23 +23,15 @@
     </properties>
 
     <dependencies>
-        <!-- Reactive gateway starter. Do not add spring-boot-starter-web
-             alongside this — Gateway runs on WebFlux/Netty, and mixing the
-             servlet (MVC) and reactive stacks in one app causes startup
-             failures. -->
         <dependency>
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-starter-gateway</artifactId>
         </dependency>
-
-        <!-- Lets the gateway discover USER-SERVICE / ORDER-SERVICE by name -->
         <dependency>
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>
         </dependency>
 
-        <!-- Resolves the lb:// scheme in route URIs to an actual instance
-             address using the registry information above. -->
         <dependency>
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-starter-loadbalancer</artifactId>
